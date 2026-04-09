@@ -6,10 +6,14 @@ from setuptools import setup # May have to be installed via `bin/pip install set
 import os
 import sys
 import platform
-import imp
+# import imp # Depreciated in Python 3.4, Removed in Python 3.12
+import importlib.util # Used instead of imp for Python >=3.4
 import argparse
 
-version = imp.load_source('version', 'lib/version.py')
+# version = imp.load_source('version', 'lib/version.py')
+spec = importlib.util.spec_from_file_location('version', 'lib/version.py')
+version = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(version)
 
 if sys.version_info[:3] < (3, 4, 0):
     sys.exit("Error: Garlium requires Python version >= 3.4.0...")
