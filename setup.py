@@ -2,7 +2,7 @@
 
 # python setup.py sdist --format=zip,gztar
 
-from setuptools import setup
+from setuptools import setup # May have to be installed via `bin/pip install setuptools`
 import os
 import sys
 import platform
